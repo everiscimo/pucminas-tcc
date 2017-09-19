@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Academic</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<h2>Alunos Cadastrados</h2>
+		<br />
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>CPF</th>
+					<th>Nome Completo</th>
+					<th>Email</th>
+					<th>Telefone</th>
+				</tr>
+			</thead>
+			<tr th:each="aluno : ${alunos}">
+				<td><span th:text="${aluno.cpf}" /></td>
+				<td><span th:text="${aluno.nome}" /></td>
+				<td><span th:text="${aluno.usuario.email}" /></td>
+				<td><span th:text="${aluno.telefone}" /></td>
+			</tr>
+		</table>
+		<hr />
+		<br /> <br />
+		<h3 >Cadastrar Novo Aluno</h3>
+		<br />
+		<form action="salvar" method="POST"  data-toggle="validator" role="form">
+			<div class="form-group">
+				<label for="cpf">CPF</label> <input type="text" class="form-control"
+					id="cpf" name="cpf" placeholder="CPF" required="required"/>
+			</div>
+			<div class="form-group">
+				<label for="nome">Nome completo</label> <input type="text"
+					class="form-control" id="nome" name="nome" placeholder="Nome" required="required"/>
+			</div>
+
+			<div class="form-group">
+				<label for="email">E-mail</label> <input type="email" 		      data-error="Por favor, informe um e-mail correto."
+					class="form-control" id="email" name="email" placeholder="E-mail" required="required"/>
+			</div>
+
+			<div class="form-group">
+				<label for="telefone">Telefone</label> <input type="text"
+					class="form-control" id="telefone" name="telefone"
+					placeholder="Telefone" required="required"/>
+			</div>
+
+			<div class="form-group">
+				<label for="senha">Senha</label> <input type="password"
+					class="form-control" id="senha" name="senha" placeholder="Senha" required="required" data-minlength="6"/>
+					 <span class="help-block">Mínimo de seis (6) digitos</span>
+			</div>
+
+			<button type="submit" class="btn btn-success">Cadastrar</button>
+			<a href="logout" class="btn btn-danger">Sair</a>
+		</form>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
